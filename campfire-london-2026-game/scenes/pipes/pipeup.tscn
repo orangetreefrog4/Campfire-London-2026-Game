@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dbjjd7po05wck"]
+
+[ext_resource type="Texture2D" uid="uid://dt03xifbn1i5x" path="res://assets/placeholderpipe.png" id="1_18d4w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84of7"]
+size = Vector2(64, 704)
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1366326228]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1033363204]
+position = Vector2(32, 352)
+shape = SubResource("RectangleShape2D_84of7")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=982818325]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_18d4w")
+flip_v = true

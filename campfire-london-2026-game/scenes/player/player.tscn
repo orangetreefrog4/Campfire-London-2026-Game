@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://kueka31nh31c"]
+
+[ext_resource type="Texture2D" uid="uid://ct3fl07aaclya" path="res://assets/placeholder.png" id="1_8afob"]
+[ext_resource type="Script" uid="uid://bqms73qfb8m5q" path="res://scenes/player/player_controller.gd" id="1_dovo2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dovo2"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
+size = Vector2(64, 64)
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1598423225]
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_dovo2")
+script = ExtResource("1_dovo2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1444422523]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_dovo2")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=922636673]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_8afob")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1991310340]
+position = Vector2(32, 32)
+limit_enabled = false
+position_smoothing_enabled = true

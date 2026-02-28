@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://24ub8vaij0u7"]
+
+[ext_resource type="Script" uid="uid://bmecjvm8n72g2" path="res://scenes/game/game_controller.gd" id="1_0sr1o"]
+[ext_resource type="Texture2D" uid="uid://ct3fl07aaclya" path="res://assets/placeholder.png" id="1_7h61r"]
+[ext_resource type="PackedScene" uid="uid://kueka31nh31c" path="res://scenes/player/player.tscn" id="1_sul5r"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7h61r"]
+distance = -44.422974
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0sr1o"]
+distance = -58.000004
+
+[node name="Node2D" type="Node2D" unique_id=1168811805]
+script = ExtResource("1_0sr1o")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=56134936]
+texture_repeat = 2
+position = Vector2(544, 352)
+scale = Vector2(34, 22.000002)
+texture = ExtResource("1_7h61r")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=524643470]
+position = Vector2(58, 659.577)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1301716678]
+shape = SubResource("WorldBoundaryShape2D_7h61r")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=899444134]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_0sr1o")
+
+[node name="RigidBody2D" parent="." unique_id=1598423225 instance=ExtResource("1_sul5r")]
