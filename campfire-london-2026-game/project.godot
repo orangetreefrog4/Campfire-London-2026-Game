@@ -14,10 +14,18 @@ config/name="Campfire London 2026 Game"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+g="*uid://cwtmksaq5g8aw"
+
 [display]
 
 window/size/viewport_width=1088
 window/size/viewport_height=704
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 [physics]
 

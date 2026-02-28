@@ -5,10 +5,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84of7"]
 size = Vector2(64, 704)
 
-[node name="RigidBody2D" type="RigidBody2D" unique_id=1366326228]
+[node name="PipeDown" type="RigidBody2D" unique_id=1366326228]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1033363204]
-position = Vector2(32, 352)
+position = Vector2(1120, 352)
 shape = SubResource("RectangleShape2D_84of7")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=982818325]
