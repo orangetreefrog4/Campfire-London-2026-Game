@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bqms73qfb8m5q" path="res://scenes/player/player_controller.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://b6ods61bya6li" path="res://assets/Submarine.png" id="2_dovo2"]
 [ext_resource type="Texture2D" uid="uid://b8n2ks6xa7yax" path="res://assets/Background.png" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://bu6wli841epic" path="res://scenes/player/ui_controller.gd" id="4_lvxji"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dovo2"]
 friction = 0.0
@@ -40,6 +41,9 @@ can_sleep = false
 lock_rotation = true
 script = ExtResource("1_dovo2")
 
+[node name="Timer" type="Timer" parent="." unique_id=476445805]
+autostart = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1444422523]
 position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_dovo2")
@@ -51,7 +55,6 @@ texture = ExtResource("2_dovo2")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1991310340]
 position = Vector2(32, 32)
 limit_enabled = false
-position_smoothing_enabled = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Camera2D" unique_id=742381491]
 visible = false
@@ -60,25 +63,83 @@ tile_map_data = PackedByteArray("AAAAAAAAAAABAAIAAAAAAAEAAAABAAMAAAAAAAIAAAABAAA
 tile_set = SubResource("TileSet_p47bc")
 collision_enabled = false
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Camera2D" unique_id=1755310977]
+visibility_layer = 512
+offset_left = -544.0
+offset_top = -352.0
+offset_right = 544.0
+offset_bottom = 352.0
+
+[node name="SubViewport" type="SubViewport" parent="Camera2D/SubViewportContainer" unique_id=897712625]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1088, 704)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="Camera2D/SubViewportContainer/SubViewport" unique_id=41939432]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_lvxji")
+
+[node name="TimeLabel" type="Label" parent="Camera2D/SubViewportContainer/SubViewport/Control" unique_id=1018111718]
+layout_mode = 0
+offset_top = 576.0
+offset_right = 128.0
+offset_bottom = 608.0
+theme_override_font_sizes/font_size = 20
+text = "Time:"
+
+[node name="Time" type="Label" parent="Camera2D/SubViewportContainer/SubViewport/Control" unique_id=1830378690]
+layout_mode = 0
+offset_top = 608.0
+offset_right = 128.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 20
+
+[node name="ScoreLabel" type="Label" parent="Camera2D/SubViewportContainer/SubViewport/Control" unique_id=1554799683]
+layout_mode = 0
+offset_top = 640.0
+offset_right = 128.0
+offset_bottom = 672.0
+theme_override_font_sizes/font_size = 20
+text = "Score:"
+
+[node name="Score" type="Label" parent="Camera2D/SubViewportContainer/SubViewport/Control" unique_id=1103822535]
+layout_mode = 0
+offset_top = 672.0
+offset_right = 128.0
+offset_bottom = 704.0
+theme_override_font_sizes/font_size = 20
+
+[node name="SpeedUI" type="Control" parent="Camera2D/SubViewportContainer/SubViewport/Control" unique_id=1804088442]
+visible = false
+anchors_preset = 0
+offset_top = 672.0
+offset_right = 40.0
+offset_bottom = 712.0
+
+[node name="SpeedLabel" type="Label" parent="Camera2D/SubViewportContainer/SubViewport/Control/SpeedUI" unique_id=120686844]
+layout_mode = 0
+offset_left = 960.0
+offset_top = -32.0
+offset_right = 1088.0
+theme_override_font_sizes/font_size = 20
+text = "Speed:"
+
+[node name="Speed" type="Label" parent="Camera2D/SubViewportContainer/SubViewport/Control/SpeedUI" unique_id=1272839272]
+layout_mode = 0
+offset_left = 960.0
+offset_right = 1088.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 20
+
 [node name="PlayerArea" type="Area2D" parent="." unique_id=1612077678]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea" unique_id=163907962]
 position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_dovo2")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1755310977]
-offset_left = -512.0
-offset_top = -320.0
-offset_right = 576.0
-offset_bottom = 384.0
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=897712625]
-transparent_bg = true
-size = Vector2i(1088, 704)
-
-[node name="Control" type="Control" parent="SubViewportContainer/SubViewport" unique_id=41939432]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[connection signal="sleeping_state_changed" from="." to="." method="_on_collided"]
+[connection signal="timeout" from="Timer" to="Camera2D/SubViewportContainer/SubViewport/Control" method="_1s_passed"]
