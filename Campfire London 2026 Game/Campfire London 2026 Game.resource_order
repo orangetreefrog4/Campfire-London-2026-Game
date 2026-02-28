@@ -1,0 +1,10 @@
+{
+  "FolderOrderSettings":[],
+  "ResourceOrderSettings":[
+    {"name":"oObstacle","order":5,"path":"objects/oObstacle/oObstacle.yy",},
+    {"name":"oSubmarine","order":4,"path":"objects/oSubmarine/oSubmarine.yy",},
+    {"name":"Background","order":1,"path":"sprites/Background/Background.yy",},
+    {"name":"Obstacle","order":3,"path":"sprites/Obstacle/Obstacle.yy",},
+    {"name":"Submarine","order":2,"path":"sprites/Submarine/Submarine.yy",},
+  ],
+}
