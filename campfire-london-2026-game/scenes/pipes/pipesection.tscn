@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://cumpj8b2et02e"]
+
+[ext_resource type="Script" uid="uid://ld7lf60x8xdn" path="res://scenes/pipes/pipesection.gd" id="1_04h3b"]
+[ext_resource type="Texture2D" uid="uid://dt03xifbn1i5x" path="res://assets/placeholderpipe.png" id="2_04h3b"]
+[ext_resource type="Script" uid="uid://dignjbpfok8ga" path="res://scenes/pipes/piper.gd" id="2_8nurf"]
+[ext_resource type="Script" uid="uid://baebemeimhbxg" path="res://scenes/pipes/player_collider.gd" id="2_dvyk5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jaaa0"]
+size = Vector2(66, 64)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dvyk5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umkwp"]
+size = Vector2(65, 704)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvyk5"]
+size = Vector2(64, 704)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nurf"]
+size = Vector2(64, 704)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04h3b"]
+size = Vector2(64, 128)
+
+[node name="Node2D" type="Node2D" unique_id=1422338218]
+script = ExtResource("1_04h3b")
+
+[node name="PlayerCollider" type="StaticBody2D" parent="." unique_id=1034363650]
+collision_layer = 2
+script = ExtResource("2_dvyk5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollider" unique_id=1304157239]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_jaaa0")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="PlayerCollider/CollisionShape2D" unique_id=926631161]
+scale = Vector2(64, 64)
+mesh = SubResource("BoxMesh_dvyk5")
+
+[node name="Moving" type="Node2D" parent="." unique_id=1262735744]
+position = Vector2(0, 352)
+
+[node name="NextTrigger" type="Area2D" parent="Moving" unique_id=652707846]
+position = Vector2(1728, -352)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving/NextTrigger" unique_id=211729449]
+position = Vector2(32, 352)
+shape = SubResource("RectangleShape2D_umkwp")
+
+[node name="Pipes" type="Node2D" parent="Moving" unique_id=1964761946]
+position = Vector2(544, 0)
+script = ExtResource("2_8nurf")
+
+[node name="PipeUp" type="StaticBody2D" parent="Moving/Pipes" unique_id=2046769344]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving/Pipes/PipeUp" unique_id=1091106424]
+position = Vector2(576, 416)
+shape = SubResource("RectangleShape2D_dvyk5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Moving/Pipes/PipeUp/CollisionShape2D" unique_id=1866272237]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_04h3b")
+flip_v = true
+
+[node name="PipeDown" type="StaticBody2D" parent="Moving/Pipes" unique_id=1795898132]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving/Pipes/PipeDown" unique_id=1769592531]
+position = Vector2(576, -416)
+shape = SubResource("RectangleShape2D_8nurf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Moving/Pipes/PipeDown/CollisionShape2D" unique_id=316083055]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_04h3b")
+
+[node name="PointTrigger" type="Area2D" parent="Moving/Pipes" unique_id=786363605]
+position = Vector2(544, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving/Pipes/PointTrigger" unique_id=1102489235]
+position = Vector2(32, 0)
+shape = SubResource("RectangleShape2D_04h3b")
+
+[connection signal="repipe_pipes" from="." to="Moving/Pipes" method="_repipe_pipes"]
+[connection signal="body_entered" from="Moving/NextTrigger" to="." method="_on_next_trigger_body_entered"]
