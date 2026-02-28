@@ -34,6 +34,9 @@ distance = -58.000004
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kelw5"]
 distance = -659.577
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7h61r"]
+load_path = "res://.godot/imported/f8a9b585-3782-4d60-abf9-ed051c5de495.png-c03a723d28310590ed6cd2f7a6672fe4.ctex"
+
 [node name="Node2D" type="Node2D" unique_id=1168811805]
 script = ExtResource("1_0sr1o")
 
@@ -66,3 +69,7 @@ shape = SubResource("WorldBoundaryShape2D_0sr1o")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=46558362]
 rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_kelw5")
+
+[node name="F8a9b58537824d60Abf9Ed051c5De495" type="Sprite2D" parent="." unique_id=1737714562]
+position = Vector2(250, 275)
+texture = SubResource("CompressedTexture2D_7h61r")
