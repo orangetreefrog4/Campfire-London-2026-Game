@@ -65,3 +65,19 @@ collision_enabled = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea" unique_id=163907962]
 position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_dovo2")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1755310977]
+offset_left = -512.0
+offset_top = -320.0
+offset_right = 576.0
+offset_bottom = 384.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=897712625]
+transparent_bg = true
+size = Vector2i(1088, 704)
+
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport" unique_id=41939432]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
